@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class Player : MonoBehaviour
 {
@@ -17,6 +18,10 @@ public class Player : MonoBehaviour
     [Header("UI References")]
     public Button shootButton;
     
+    [Header("Fuel System")]
+    public FuelManager fuelManager;
+    private bool isFuelEmpty = false;
+    
     private GameManager gameManager;
     
     void Start()
@@ -25,21 +30,28 @@ public class Player : MonoBehaviour
         rb.gravityScale = normalGravity;
         
         gameManager = GameManager.Instance;
+        
+        fuelManager.onFuelEmpty.AddListener(OnFuelEmpty);
     }
     
     void Update()
     {
+        if (fuelManager.IsFuelEmpty())
+        {
+            isFuelEmpty = true;
+        }
+        
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
-            if (shootButton != null && RectTransformUtility.RectangleContainsScreenPoint(
+            if (RectTransformUtility.RectangleContainsScreenPoint(
                 shootButton.GetComponent<RectTransform>(), touch.position, null))
             {
                 isTouching = false;
             }
             else
             {
-                isTouching = true;
+                isTouching = !isFuelEmpty;
             }
         }
         else
@@ -50,7 +62,6 @@ public class Player : MonoBehaviour
     
     void FixedUpdate()
     {
-        // Don't apply physics if game is over
         if (isGameOver) return;
         
         Vector2 velocity = rb.velocity;
@@ -59,6 +70,8 @@ public class Player : MonoBehaviour
         {
             velocity.y = jetpackForce;
             animator.SetBool("isJumping", true);
+            
+            fuelManager.ConsumeFuel(fuelManager.fuelConsumptionRate * Time.fixedDeltaTime);
         }
         else
         {
@@ -73,8 +86,18 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-        isGameOver = true;
-        gameManager.ShowGameOver();
+            isGameOver = true;
+            gameManager.ShowGameOver();
         }
+    }
+    
+    private void OnFuelEmpty()
+    {
+        isFuelEmpty = true;
+    }
+    
+    private void OnDestroy()
+    {
+        fuelManager.onFuelEmpty.RemoveListener(OnFuelEmpty);
     }
 }
