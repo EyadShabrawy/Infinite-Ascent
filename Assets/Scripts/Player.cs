@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
     
     void Update()
     {
-        if (fuelManager.IsFuelEmpty())
+        if (fuelManager != null && fuelManager.IsFuelEmpty())
         {
             isFuelEmpty = true;
         }

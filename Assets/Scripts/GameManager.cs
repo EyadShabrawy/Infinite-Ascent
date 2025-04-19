@@ -60,6 +60,6 @@ public class GameManager : MonoBehaviour
         gameOverUI.Hide();
         gameOverPanel.SetActive(false);
         
-        SceneManager.LoadScene("Main Menu Scene");
+        SceneManager.LoadScene("Main Menu");
     }
 }
