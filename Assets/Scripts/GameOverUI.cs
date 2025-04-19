@@ -7,9 +7,9 @@ using TMPro;
 public class GameOverUI : MonoBehaviour
 {
     [Header("UI Elements")]
-    public TextMeshProUGUI gameOverText;
     public Button retryButton;
     public Button mainMenuButton;
+    public TextMeshProUGUI coinsCollectedText;
     
     
     [Header("References")]
@@ -52,5 +52,13 @@ public class GameOverUI : MonoBehaviour
     {
         gameManager.GoToMainMenu();
 
+    }
+    
+    public void UpdateCoinsText(int coins)
+    {
+        if (coinsCollectedText != null)
+        {
+            coinsCollectedText.text = "Collected: " + coins.ToString();
+        }
     }
 }

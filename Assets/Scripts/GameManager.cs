@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -33,13 +34,30 @@ public class GameManager : MonoBehaviour
     
     public void ShowGameOver()
     {
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+        {
+            Player player = playerObj.GetComponent<Player>();
+            if (player != null)
+            {
+                int collectedCoins = player.GetCoinsCollected();
+                if (collectedCoins > 0 && UserManager.Instance != null)
+                {
+                    UserManager.Instance.AddCoins(collectedCoins);
+                }
+                
+                if (gameOverUI != null && gameOverUI.coinsCollectedText != null)
+                {
+                    gameOverUI.UpdateCoinsText(collectedCoins);
+                }
+            }
+        }
+        
         gameOverPanel.SetActive(true);
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+        GameObject playerGameObj = GameObject.FindGameObjectWithTag("Player");
+        Rigidbody2D rb = playerGameObj.GetComponent<Rigidbody2D>();
         rb.simulated = false;
         Time.timeScale = 0f;
-
-
     }
     
     public void RetryGame()

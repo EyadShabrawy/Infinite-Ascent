@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -82,6 +83,10 @@ public class Player : MonoBehaviour
         rb.velocity = velocity;
     }
     
+    [Header("Coin System")]
+    public TextMeshProUGUI coinText;
+    private int coinsCollected = 0;
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Obstacle"))
@@ -89,6 +94,25 @@ public class Player : MonoBehaviour
             isGameOver = true;
             gameManager.ShowGameOver();
         }
+        else if (collision.gameObject.CompareTag("Coin"))
+        {
+            coinsCollected++;
+            UpdateCoinText();
+            Destroy(collision.gameObject);
+        }
+    }
+    
+    private void UpdateCoinText()
+    {
+        if (coinText != null)
+        {
+            coinText.text = coinsCollected.ToString();
+        }
+    }
+    
+    public int GetCoinsCollected()
+    {
+        return coinsCollected;
     }
     
     private void OnFuelEmpty()

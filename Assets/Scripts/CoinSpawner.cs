@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Obstacles : MonoBehaviour
+public class CoinSpawner : MonoBehaviour
 {
-    public GameObject obstacle;
+    public GameObject coinPrefab;
     public Transform spawnPoint;
     public float maxX;
     public float minX;
@@ -29,6 +27,6 @@ public class Obstacles : MonoBehaviour
 
         Vector3 spawnPosition = spawnPoint.position + new Vector3(x, y, 0);
 
-        Instantiate(obstacle, spawnPosition, spawnPoint.rotation);
+        Instantiate(coinPrefab, spawnPosition, spawnPoint.rotation);
     }
 }
