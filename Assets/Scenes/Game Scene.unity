@@ -1134,95 +1134,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &1166588779
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1166588782}
-  - component: {fileID: 1166588781}
-  - component: {fileID: 1166588780}
-  m_Layer: 0
-  m_Name: CutsceneManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!328 &1166588780
-VideoPlayer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1166588779}
-  m_Enabled: 1
-  m_VideoClip: {fileID: 0}
-  m_TargetCameraAlpha: 1
-  m_TargetCamera3DLayout: 0
-  m_TargetCamera: {fileID: 0}
-  m_TargetTexture: {fileID: 8400000, guid: 8069882f7013041679d14d5ec0a039cc, type: 2}
-  m_TimeReference: 0
-  m_TargetMaterialRenderer: {fileID: 0}
-  m_TargetMaterialProperty: <noninit>
-  m_RenderMode: 2
-  m_AspectRatio: 2
-  m_DataSource: 1
-  m_TimeUpdateMode: 2
-  m_PlaybackSpeed: 1
-  m_AudioOutputMode: 2
-  m_TargetAudioSources: []
-  m_DirectAudioVolumes: []
-  m_Url: file:///Users/eyad/Infinite Ascent Game/Assets/StreamingAssets/BossFightScene.mp4
-  m_EnabledAudioTracks: 
-  m_DirectAudioMutes: 
-  m_ControlledAudioTrackCount: 0
-  m_PlayOnAwake: 1
-  m_SkipOnDrop: 1
-  m_Looping: 0
-  m_WaitForFirstFrame: 1
-  m_FrameReadyEventEnabled: 0
-  m_VideoShaders: []
---- !u!114 &1166588781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1166588779}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00a794a3b49a447e9878523d4e17d6c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  videoPlayer: {fileID: 1166588780}
-  videoFileName: BossFightScene.mp4
-  renderTexture: {fileID: 8400000, guid: 8069882f7013041679d14d5ec0a039cc, type: 2}
-  videoCutscenePanel: {fileID: 650613388}
-  onVideoStart:
-    m_PersistentCalls:
-      m_Calls: []
-  onVideoComplete:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!4 &1166588782
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1166588779}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1266, y: 585, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1420187224 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9182570659236255026, guid: 696ecdbf24f774fea929a0e3ed59f0f5, type: 3}
@@ -1242,6 +1153,8 @@ GameObject:
   - component: {fileID: 1447176017}
   - component: {fileID: 1447176019}
   - component: {fileID: 1447176018}
+  - component: {fileID: 1447176021}
+  - component: {fileID: 1447176020}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -1310,9 +1223,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fuelManager: {fileID: 1447176019}
-  videoCutsceneManager: {fileID: 1166588781}
+  videoCutsceneManager: {fileID: 1447176021}
   sceneTransitionManager: {fileID: 1447176018}
-  nextSceneName: Boss Fight Scene
+  nextSceneName: Boss Fight
 --- !u!114 &1447176018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1325,7 +1238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca509cecf86845049150ed57a0a16cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSceneName: Boss Fight Scene
+  targetSceneName: Boss Fight
   transitionDelay: 1
 --- !u!114 &1447176019
 MonoBehaviour:
@@ -1348,6 +1261,62 @@ MonoBehaviour:
   lowFuelColor: {r: 1, g: 0, b: 0, a: 1}
   lowFuelThreshold: 0.5
   onFuelEmpty:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!328 &1447176020
+VideoPlayer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447176012}
+  m_Enabled: 1
+  m_VideoClip: {fileID: 0}
+  m_TargetCameraAlpha: 1
+  m_TargetCamera3DLayout: 0
+  m_TargetCamera: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: 8069882f7013041679d14d5ec0a039cc, type: 2}
+  m_TimeReference: 0
+  m_TargetMaterialRenderer: {fileID: 0}
+  m_TargetMaterialProperty: <noninit>
+  m_RenderMode: 2
+  m_AspectRatio: 2
+  m_DataSource: 1
+  m_TimeUpdateMode: 2
+  m_PlaybackSpeed: 1
+  m_AudioOutputMode: 2
+  m_TargetAudioSources: []
+  m_DirectAudioVolumes: []
+  m_Url: file:///Users/eyad/Infinite Ascent Game/Assets/StreamingAssets/BossFightScene.mp4
+  m_EnabledAudioTracks: 
+  m_DirectAudioMutes: 
+  m_ControlledAudioTrackCount: 0
+  m_PlayOnAwake: 1
+  m_SkipOnDrop: 1
+  m_Looping: 0
+  m_WaitForFirstFrame: 1
+  m_FrameReadyEventEnabled: 0
+  m_VideoShaders: []
+--- !u!114 &1447176021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447176012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00a794a3b49a447e9878523d4e17d6c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  videoPlayer: {fileID: 1447176020}
+  videoFileName: BossFightScene.mp4
+  renderTexture: {fileID: 8400000, guid: 8069882f7013041679d14d5ec0a039cc, type: 2}
+  videoCutscenePanel: {fileID: 650613388}
+  onVideoStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onVideoComplete:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &1497702953
@@ -2349,4 +2318,3 @@ SceneRoots:
   - {fileID: 1447176014}
   - {fileID: 1627788592}
   - {fileID: 1158940371}
-  - {fileID: 1166588782}
