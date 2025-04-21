@@ -16,9 +16,6 @@ public class Player : MonoBehaviour
     public float normalGravity = 2f;
     public float maxFallSpeed = 10f;
     
-    [Header("UI References")]
-    public Button shootButton;
-    
     [Header("Fuel System")]
     public FuelManager fuelManager;
     private bool isFuelEmpty = false;
@@ -44,16 +41,7 @@ public class Player : MonoBehaviour
         
         if (Input.touchCount > 0)
         {
-            Touch touch = Input.GetTouch(0);
-            if (RectTransformUtility.RectangleContainsScreenPoint(
-                shootButton.GetComponent<RectTransform>(), touch.position, null))
-            {
-                isTouching = false;
-            }
-            else
-            {
-                isTouching = !isFuelEmpty;
-            }
+            isTouching = !isFuelEmpty;
         }
         else
         {

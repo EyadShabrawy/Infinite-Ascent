@@ -14,18 +14,11 @@ public class GameOverUI : MonoBehaviour
     
     [Header("References")]
     public GameManager gameManager;
+    private BossFightManager bossFightManager;
     
     void Start()
     {
-        
-    if (retryButton != null)
-    {
-        retryButton.onClick.RemoveAllListeners();
-        retryButton.onClick.AddListener(() => {gameManager.RetryGame();});
-    }
-        
-        mainMenuButton.onClick.RemoveAllListeners();
-        mainMenuButton.onClick.AddListener(() => {gameManager.GoToMainMenu();});
+        bossFightManager = FindObjectOfType<BossFightManager>();
     }
     
     
@@ -36,14 +29,24 @@ public class GameOverUI : MonoBehaviour
     
     public void OnRetryButtonClicked()
     {
-        gameManager.RetryGame();
-
+        if (gameManager != null)
+        {
+            gameManager.RetryGame();
+        }
     }
     
     public void OnMainMenuButtonClicked()
     {
-        gameManager.GoToMainMenu();
-
+        if (gameManager != null)
+        {
+            gameManager.GoToMainMenu();
+        }
+            
+        else
+        {
+            bossFightManager.ReturnToMainMenu();
+        }
+            
     }
     
     public void UpdateCoinsText(int coins)

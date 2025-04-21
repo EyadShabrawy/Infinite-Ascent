@@ -878,7 +878,7 @@ GameObject:
   - component: {fileID: 314459020}
   - component: {fileID: 314459019}
   m_Layer: 5
-  m_Name: Coin Image
+  m_Name: Info Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -900,7 +900,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -24.3, y: -0}
+  m_AnchoredPosition: {x: -80, y: -0}
   m_SizeDelta: {x: 36.809, y: 36.809}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &314459019
@@ -923,7 +923,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a9fa5381bd2404846a08e30dd7ae0ec4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 16f694c616f0a4447938cc5d3f1da1d5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3944,7 +3944,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1981737591}
   m_Layer: 5
-  m_Name: CoinsCollected
+  m_Name: Info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3968,8 +3968,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -26.8, y: 42}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -48.9, y: 10.9}
+  m_SizeDelta: {x: 336.8666, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2033193275
 GameObject:
@@ -4133,7 +4133,7 @@ GameObject:
   - component: {fileID: 2072848230}
   - component: {fileID: 2072848229}
   m_Layer: 5
-  m_Name: CoinsCollected Text
+  m_Name: Info Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4159,7 +4159,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Collected: 0'
+  m_text: You can upgrade your abilities in the shop to defeat the enemy
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -4186,8 +4186,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 14
+  m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4252,8 +4252,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 70.2, y: 0}
-  m_SizeDelta: {x: 140.7621, y: 35.9404}
+  m_AnchoredPosition: {x: 72.7, y: 0}
+  m_SizeDelta: {x: 247.3411, y: 35.9404}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

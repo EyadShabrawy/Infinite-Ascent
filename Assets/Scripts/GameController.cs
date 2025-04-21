@@ -32,6 +32,11 @@ public class GameController : MonoBehaviour
     {
         if (isTransitioning) return;
         
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        Player player = playerObj.GetComponent<Player>();
+        int collectedCoins = player.GetCoinsCollected();
+        UserManager.Instance.AddCoins(collectedCoins);
+        
         isTransitioning = true;
         SceneManager.LoadScene("Boss Fight");
     }
