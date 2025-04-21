@@ -1607,7 +1607,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetSceneName: Boss Fight
-  transitionDelay: 1
+  transitionDelay: 0
 --- !u!114 &1447176019
 MonoBehaviour:
   m_ObjectHideFlags: 0

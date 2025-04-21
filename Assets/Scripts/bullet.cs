@@ -1,13 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
- 
+
 public class bullet : MonoBehaviour
 {
     public Rigidbody2D RB;
     public float speed;
-    public GameObject bulletEffect;
  
     void Start()
     {
@@ -16,8 +12,10 @@ public class bullet : MonoBehaviour
  
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Instantiate(bulletEffect, transform.position, transform.rotation);
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            collision.gameObject.SendMessage("TakeDamage", 10, SendMessageOptions.DontRequireReceiver);
+        }
         Destroy(gameObject);
-        
     }
 }

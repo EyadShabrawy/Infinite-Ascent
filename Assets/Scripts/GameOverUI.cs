@@ -17,23 +17,12 @@ public class GameOverUI : MonoBehaviour
     
     void Start()
     {
-        if (gameManager == null)
-        {
-            gameManager = GameManager.Instance;
-        }
         
-        if (retryButton != null)
-        {
-            retryButton.onClick.RemoveAllListeners();
-            retryButton.onClick.AddListener(() => {gameManager.RetryGame();});
-        }
-
+        retryButton.onClick.RemoveAllListeners();
+        retryButton.onClick.AddListener(() => {gameManager.RetryGame();});
         
-        if (mainMenuButton != null)
-        {
-            mainMenuButton.onClick.RemoveAllListeners();
-            mainMenuButton.onClick.AddListener(() => {gameManager.GoToMainMenu();});
-        }
+        mainMenuButton.onClick.RemoveAllListeners();
+        mainMenuButton.onClick.AddListener(() => {gameManager.GoToMainMenu();});
     }
     
     
@@ -56,9 +45,6 @@ public class GameOverUI : MonoBehaviour
     
     public void UpdateCoinsText(int coins)
     {
-        if (coinsCollectedText != null)
-        {
-            coinsCollectedText.text = "Collected: " + coins.ToString();
-        }
+        coinsCollectedText.text = "Collected: " + coins.ToString();
     }
 }

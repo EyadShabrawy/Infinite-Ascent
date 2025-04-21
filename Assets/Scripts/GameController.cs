@@ -8,15 +8,11 @@ public class GameController : MonoBehaviour
     [Header("Managers")]
     public FuelManager fuelManager;
     public VideoCutsceneManager videoCutsceneManager;
-    public SceneTransitionManager sceneTransitionManager;
     
-    [Header("Scene Transition")]
-    public string nextSceneName;
+    private bool isTransitioning = false;
     
     void Start()
     {
-        sceneTransitionManager.targetSceneName = nextSceneName;
-        
         ConnectEvents();
     }
     
@@ -24,11 +20,19 @@ public class GameController : MonoBehaviour
     {
         fuelManager.onFuelEmpty.AddListener(videoCutsceneManager.PlayCutscene);
         
-        videoCutsceneManager.onVideoComplete.AddListener(sceneTransitionManager.TransitionToScene);
+        videoCutsceneManager.onVideoComplete.AddListener(TransitionToScene);
     }
     
     public void TriggerFuelEmpty()
     {
         fuelManager.ConsumeFuel(fuelManager.currentFuel);
+    }
+    
+    public void TransitionToScene()
+    {
+        if (isTransitioning) return;
+        
+        isTransitioning = true;
+        SceneManager.LoadScene("Boss Fight");
     }
 }

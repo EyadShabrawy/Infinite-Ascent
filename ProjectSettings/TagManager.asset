@@ -4,10 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - enemy
   - bullet
   - Obstacle
   - Coin
+  - Enemy
+  - BossBullet
   layers:
   - Default
   - TransparentFX

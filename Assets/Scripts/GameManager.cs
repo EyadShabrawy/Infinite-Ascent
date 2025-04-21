@@ -35,22 +35,16 @@ public class GameManager : MonoBehaviour
     public void ShowGameOver()
     {
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-        if (playerObj != null)
+        Player player = playerObj.GetComponent<Player>();
+        int collectedCoins = player.GetCoinsCollected();
+        if (collectedCoins > 0 && UserManager.Instance != null)
         {
-            Player player = playerObj.GetComponent<Player>();
-            if (player != null)
-            {
-                int collectedCoins = player.GetCoinsCollected();
-                if (collectedCoins > 0 && UserManager.Instance != null)
-                {
-                    UserManager.Instance.AddCoins(collectedCoins);
-                }
-                
-                if (gameOverUI != null && gameOverUI.coinsCollectedText != null)
-                {
-                    gameOverUI.UpdateCoinsText(collectedCoins);
-                }
-            }
+            UserManager.Instance.AddCoins(collectedCoins);
+        }
+        
+        if (gameOverUI != null && gameOverUI.coinsCollectedText != null)
+        {
+            gameOverUI.UpdateCoinsText(collectedCoins);
         }
         
         gameOverPanel.SetActive(true);

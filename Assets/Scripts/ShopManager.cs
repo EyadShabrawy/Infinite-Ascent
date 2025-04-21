@@ -36,25 +36,19 @@ public class ShopManager : MonoBehaviour
     
     void UpdateCoinDisplay()
     {
-        if (coinText != null && userManager != null)
-        {
-            coinText.text = userManager.Coins.ToString();
-        }
+        coinText.text = userManager.Coins.ToString();
     }
     
     void ShowMessage(string message)
     {
-        if (errorText != null)
+        if (messageCoroutine != null)
         {
-            if (messageCoroutine != null)
-            {
-                StopCoroutine(messageCoroutine);
-            }
-            
-            errorText.text = message;
-            
-            messageCoroutine = StartCoroutine(ClearMessageAfterDelay());
+            StopCoroutine(messageCoroutine);
         }
+        
+        errorText.text = message;
+        
+        messageCoroutine = StartCoroutine(ClearMessageAfterDelay());
     }
     
     IEnumerator ClearMessageAfterDelay()

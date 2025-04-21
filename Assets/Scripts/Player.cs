@@ -104,10 +104,7 @@ public class Player : MonoBehaviour
     
     private void UpdateCoinText()
     {
-        if (coinText != null)
-        {
-            coinText.text = coinsCollected.ToString();
-        }
+        coinText.text = coinsCollected.ToString();
     }
     
     public int GetCoinsCollected()
