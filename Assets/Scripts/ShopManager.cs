@@ -60,15 +60,18 @@ public class ShopManager : MonoBehaviour
     
     void PurchaseArmorUpgrade()
     {
-        if (userManager.Coins >= armorUpgradeCost)
+        if (userManager.Coins >= armorUpgradeCost && userManager.ArmorLevel < 5)
         {
             userManager.UpdateCoins(userManager.Coins - armorUpgradeCost);
+            userManager.UpdateArmorLevel(userManager.ArmorLevel + 1);
             
-            // Apply armor upgrade effect
-            
-            ShowMessage("Successfully purchased armor upgrade!");
+            ShowMessage($"Successfully purchased armor upgrade! Level: {userManager.ArmorLevel}");
             
             UpdateCoinDisplay();
+        }
+        else if (userManager.ArmorLevel >= 5)
+        {
+            ShowMessage("Armor already at maximum level!");
         }
         else
         {
@@ -78,15 +81,18 @@ public class ShopManager : MonoBehaviour
     
     void PurchaseSpeedUpgrade()
     {
-        if (userManager.Coins >= speedUpgradeCost)
+        if (userManager.Coins >= speedUpgradeCost && userManager.SpeedLevel < 5)
         {
             userManager.UpdateCoins(userManager.Coins - speedUpgradeCost);
+            userManager.UpdateSpeedLevel(userManager.SpeedLevel + 1);
             
-            // Apply speed upgrade effect
-            
-            ShowMessage("Successfully purchased speed upgrade!");
+            ShowMessage($"Successfully purchased speed upgrade! Level: {userManager.SpeedLevel}");
             
             UpdateCoinDisplay();
+        }
+        else if (userManager.SpeedLevel >= 5)
+        {
+            ShowMessage("Speed already at maximum level!");
         }
         else
         {
@@ -96,15 +102,18 @@ public class ShopManager : MonoBehaviour
     
     void PurchaseDamageUpgrade()
     {
-        if (userManager.Coins >= damageUpgradeCost)
+        if (userManager.Coins >= damageUpgradeCost && userManager.DamageLevel < 5)
         {
             userManager.UpdateCoins(userManager.Coins - damageUpgradeCost);
+            userManager.UpdateDamageLevel(userManager.DamageLevel + 1);
             
-            // Apply damage upgrade effect
-            
-            ShowMessage("Successfully purchased damage upgrade!");
+            ShowMessage($"Successfully purchased damage upgrade! Level: {userManager.DamageLevel}");
             
             UpdateCoinDisplay();
+        }
+        else if (userManager.DamageLevel >= 5)
+        {
+            ShowMessage("Damage already at maximum level!");
         }
         else
         {

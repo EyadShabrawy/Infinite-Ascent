@@ -5,8 +5,8 @@ using System.Collections;
 public class BossPlayer : MonoBehaviour
 {
     [Header("Movement Settings")]
-    public float runSpeed = 40f;
-    public float jumpForce = 400f;
+    private float runSpeed;
+    private float jumpForce;
     private float horizontalMove = 0f;
     private bool jump = false;
     
@@ -26,13 +26,49 @@ public class BossPlayer : MonoBehaviour
     
     private BossFightManager bossFightManager;
     
+    private UserManager userManager;
+    
     void Start()
     {
+        userManager = UserManager.Instance;
+        SetStatsBasedOnLevel();
+        
         currentHealth = maxHealth;
         healthSlider.maxValue = maxHealth;
         healthSlider.value = currentHealth;
         
         bossFightManager = FindObjectOfType<BossFightManager>();
+    }
+    
+    void SetStatsBasedOnLevel()
+    {
+        switch (userManager.SpeedLevel)
+        {
+            case 1:
+                runSpeed = 15f;
+                jumpForce = 400f;
+                break;
+            case 2:
+                runSpeed = 20f;
+                jumpForce = 450f;
+                break;
+            case 3:
+                runSpeed = 25f;
+                jumpForce = 500f;
+                break;
+            case 4:
+                runSpeed = 30f;
+                jumpForce = 550f;
+                break;
+            case 5:
+                runSpeed = 35f;
+                jumpForce = 600f;
+                break;
+            default:
+                runSpeed = 15f;
+                jumpForce = 400f;
+                break;
+        }
     }
     
     void FixedUpdate()
@@ -93,9 +129,32 @@ public class BossPlayer : MonoBehaviour
         animator.CrossFade("fly", 0f);
     }
     
-    public void TakeDamage(int damage)
+    public void TakeDamage()
     {
-        currentHealth -= damage;
+        int adjustedDamage;
+        switch (userManager.ArmorLevel)
+        {
+            case 1:
+                adjustedDamage = 50;
+                break;
+            case 2:
+                adjustedDamage = 40;
+                break;
+            case 3:
+                adjustedDamage = 30;
+                break;
+            case 4:
+                adjustedDamage = 20;
+                break;
+            case 5:
+                adjustedDamage = 10;
+                break;
+            default:
+                adjustedDamage = 50;
+                break;
+        }
+        
+        currentHealth -= adjustedDamage;
         
         healthSlider.value = currentHealth;
         
@@ -110,12 +169,7 @@ public class BossPlayer : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            TakeDamage(20);
-        }
-        else if (collision.gameObject.CompareTag("BossBullet"))
-        {
-            TakeDamage(10);
-            Destroy(collision.gameObject);
+            TakeDamage();
         }
     }
 }

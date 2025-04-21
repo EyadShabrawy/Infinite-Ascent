@@ -18,8 +18,11 @@ public class GameOverUI : MonoBehaviour
     void Start()
     {
         
+    if (retryButton != null)
+    {
         retryButton.onClick.RemoveAllListeners();
         retryButton.onClick.AddListener(() => {gameManager.RetryGame();});
+    }
         
         mainMenuButton.onClick.RemoveAllListeners();
         mainMenuButton.onClick.AddListener(() => {gameManager.GoToMainMenu();});

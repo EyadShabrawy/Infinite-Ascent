@@ -18,7 +18,7 @@ public class BossBullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.SendMessage("TakeDamage", 10, SendMessageOptions.DontRequireReceiver);
+            collision.gameObject.SendMessage("TakeDamage", SendMessageOptions.DontRequireReceiver);
         }
         Destroy(gameObject);
     }

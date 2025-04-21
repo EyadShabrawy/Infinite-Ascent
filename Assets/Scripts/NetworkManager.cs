@@ -10,7 +10,7 @@ public class NetworkManager : MonoBehaviour
 {
     public static NetworkManager Instance { get; private set; }
     
-    [SerializeField] private string serverUrl = "http://localhost:3000";
+    [SerializeField] private string serverUrl = "http://10.10.1.164:3000";
     
     [Header("Authentication UI")]
     public GameObject loginPanel;
@@ -37,6 +37,9 @@ public class NetworkManager : MonoBehaviour
         public string username;
         public string password;
         public int coins;
+        public int armor_level;
+        public int damage_level;
+        public int speed_level;
         public string error;
     }
     
@@ -65,8 +68,8 @@ public class NetworkManager : MonoBehaviour
         }
         
         LoginUser(username, password, 
-            (userId, username, coins) => {
-                UserManager.Instance.SetUserData(userId, username, coins);
+            (userId, username, coins, armorLevel, damageLevel, speedLevel) => {
+                UserManager.Instance.SetUserData(userId, username, coins, armorLevel, damageLevel, speedLevel);
                 ShowError("Login successful!");
                 StartCoroutine(LoadSceneAfterDelay("Main Menu", 1.5f));
             },
@@ -133,12 +136,13 @@ public class NetworkManager : MonoBehaviour
             .Catch(err => onError(ExtractErrorMessage(err)));
     }
     
-    public void LoginUser(string username, string password, Action<int, string, int> onSuccess, Action<string> onError)
+    public void LoginUser(string username, string password, Action<int, string, int, int, int, int> onSuccess, Action<string> onError)
     {
         var request = new UserModel { username = username, password = password };
         
         RestClient.Post<UserModel>(serverUrl + "/login", request)
-            .Then(response => onSuccess(response.id, response.username, response.coins))
+            .Then(response => onSuccess(response.id, response.username, response.coins, 
+                                       response.armor_level, response.damage_level, response.speed_level))
             .Catch(err => onError(ExtractErrorMessage(err)));
     }
     
@@ -147,6 +151,33 @@ public class NetworkManager : MonoBehaviour
         var request = new UserModel { id = userId, coins = coins };
         
         RestClient.Put(serverUrl + "/update-coins", request)
+            .Then(_ => callback?.Invoke(true))
+            .Catch(_ => callback?.Invoke(false));
+    }
+    
+    public void UpdateArmorLevel(int userId, int level, Action<bool> callback)
+    {
+        var request = new UserModel { id = userId, armor_level = level };
+        
+        RestClient.Put(serverUrl + "/update-armor", request)
+            .Then(_ => callback?.Invoke(true))
+            .Catch(_ => callback?.Invoke(false));
+    }
+    
+    public void UpdateDamageLevel(int userId, int level, Action<bool> callback)
+    {
+        var request = new UserModel { id = userId, damage_level = level };
+        
+        RestClient.Put(serverUrl + "/update-damage", request)
+            .Then(_ => callback?.Invoke(true))
+            .Catch(_ => callback?.Invoke(false));
+    }
+    
+    public void UpdateSpeedLevel(int userId, int level, Action<bool> callback)
+    {
+        var request = new UserModel { id = userId, speed_level = level };
+        
+        RestClient.Put(serverUrl + "/update-speed", request)
             .Then(_ => callback?.Invoke(true))
             .Catch(_ => callback?.Invoke(false));
     }
