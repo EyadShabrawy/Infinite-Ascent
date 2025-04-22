@@ -1599,7 +1599,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxFuel: 100
   currentFuel: 0
-  fuelConsumptionRate: 30
+  fuelConsumptionRate: 5
   fuelSlider: {fileID: 1860565301}
   fuelFillImage: {fileID: 1894318054}
   fullFuelColor: {r: 0, g: 1, b: 0, a: 1}
