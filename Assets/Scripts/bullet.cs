@@ -43,8 +43,8 @@ public class bullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            Destroy(gameObject);
             collision.gameObject.SendMessage("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
         }
-        Destroy(gameObject);
     }
 }
