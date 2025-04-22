@@ -10,7 +10,7 @@ public class NetworkManager : MonoBehaviour
 {
     public static NetworkManager Instance { get; private set; }
     
-    [SerializeField] private string serverUrl = "http://10.10.1.164:3000";
+    private string serverUrl = "https://radical-flint-bangle.glitch.me";
     
     [Header("Authentication UI")]
     public GameObject loginPanel;
