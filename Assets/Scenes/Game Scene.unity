@@ -2560,6 +2560,10 @@ PrefabInstance:
       propertyPath: shootButton
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8434629035296502293, guid: 696ecdbf24f774fea929a0e3ed59f0f5, type: 3}
+      propertyPath: jetpackForce
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
