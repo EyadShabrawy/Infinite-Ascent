@@ -10,11 +10,6 @@ public class BossController : MonoBehaviour
     [Header("Boss Settings")]
     public Slider healthSlider;
     
-    [Header("Boss Movement")]
-    public float moveSpeed;
-    public Transform[] movePoints;
-    private int currentPointIndex = 0;
-    
     [Header("Boss Attack")]
     public GameObject bossBullet;
     public Transform firePoint;
@@ -37,20 +32,6 @@ public class BossController : MonoBehaviour
     void Update()
     {
         if (currentHealth <= 0) return;
-        
-        if (movePoints.Length > 0)
-        {
-            transform.position = Vector2.MoveTowards(
-                transform.position, 
-                movePoints[currentPointIndex].position, 
-                moveSpeed * Time.deltaTime
-            );
-            
-            if (Vector2.Distance(transform.position, movePoints[currentPointIndex].position) < 0.1f)
-            {
-                currentPointIndex = (currentPointIndex + 1) % movePoints.Length;
-            }
-        }
         
         if (Time.time >= nextShootTime)
         {
