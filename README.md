@@ -1,7 +1,7 @@
 # Infinite Ascent
 
 ## Description
-Infinite Ascent is a game where players navigate through obstacles, collect coins, and face challenging boss fights. The game features character upgrades, and an engaging combat system. Players can enhance their armor, speed, and weapons using their coins to succuessfuly defeat the boss.
+Infinite Ascent is a game where players navigate through obstacles, collect coins, and have a boss fight. The game features character upgrades, and an engaging combat system. Players can upgrade their armor, speed, and weapons using their coins to succuessfuly defeat the boss.
 
 ## Third-Party Plugins
 
