@@ -9,6 +9,7 @@ public class BossPlayer : MonoBehaviour
     private float jumpForce;
     private float horizontalMove = 0f;
     private bool jump = false;
+    private bool canJump = true;
     
     [Header("References")]
     public CharacterController2D controller;
@@ -125,8 +126,12 @@ public class BossPlayer : MonoBehaviour
     
     public void OnJumpButtonDown()
     {
-        jump = true;
-        animator.CrossFade("fly", 0f);
+        if (canJump)
+        {
+            jump = true;
+            canJump = false;
+            animator.CrossFade("fly", 0f);
+        }
     }
     
     public void TakeDamage()
@@ -170,6 +175,14 @@ public class BossPlayer : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             TakeDamage();
+        }
+    }
+    
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            canJump = true;
         }
     }
 }

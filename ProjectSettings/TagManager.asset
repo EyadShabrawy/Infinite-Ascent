@@ -9,6 +9,7 @@ TagManager:
   - Coin
   - Enemy
   - BossBullet
+  - Ground
   layers:
   - Default
   - TransparentFX
