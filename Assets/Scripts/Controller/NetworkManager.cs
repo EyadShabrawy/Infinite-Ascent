@@ -67,9 +67,9 @@ public class NetworkManager : MonoBehaviour
             return;
         }
         
-        LoginUser(username, password, 
+        LoginUser(username.ToLower(), password, 
             (userId, username, coins, armorLevel, damageLevel, speedLevel) => {
-                UserManager.Instance.SetUserData(userId, username.ToLower(), coins, armorLevel, damageLevel, speedLevel);
+                UserManager.Instance.SetUserData(userId, username, coins, armorLevel, damageLevel, speedLevel);
                 ShowError("Login successful!");
                 StartCoroutine(LoadSceneAfterDelay("Main Menu", 1.5f));
             },
